@@ -1,4 +1,4 @@
-# include <philosofer.h>
+#include <philosopher.h>
 # include "libft/libft.h"
 
 long	atol(const char *str)
@@ -41,20 +41,22 @@ int	isnbr(char *matr)
 	}
 	return (1);
 }
-void asignval(t_vals *vals, long cpy, int i)
+
+void	asignval(t_program *vals, long cpy, int i)
 {
 	if(i == 2)
-		vals->philo = cpy;
+		vals->nb_philo = cpy;
 	else if(i == 3)
-		vals->die = cpy;
+		vals->time_death = cpy;
 	else if(i == 4)
-		vals->eat = cpy;	
+		vals->time_eat = cpy;	
 	else if(i == 5)
-		vals->sleep = cpy;	
+		vals->time_sleep = cpy;	
 	else if(i == 6)
-		vals->reps = cpy;	
+		vals->nb_eat = cpy;	
 }
-int valid_assign(t_vals *vals, char **argv)
+
+int	valid_assign(t_program *vals, char **argv)
 {
 	int		i;
 	long cpy;
