@@ -13,7 +13,7 @@ long long	timestamp(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-void		action_print(t_program *program, int id, char *string)
+void	action_print(t_program *program, int id, char *string)
 {
 	pthread_mutex_lock(&(program->writing));
 	if (!(program->dieded))

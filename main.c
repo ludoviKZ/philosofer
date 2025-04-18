@@ -3,7 +3,7 @@
 
 void	exit_launcher(t_program *program, t_philosopher *philos)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < program->nb_philo)
@@ -16,7 +16,7 @@ void	exit_launcher(t_program *program, t_philosopher *philos)
 
 void	death_checker(t_program *r, t_philosopher *p)
 {
-	int i;
+	int	i;
 
 	while (!(r->all_ate))
 	{
@@ -42,12 +42,14 @@ void	death_checker(t_program *r, t_philosopher *p)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_program program;
-	if (argc != 5 && argc !=6)
-		return(0);
+	t_program	program;
+
+	if (argc != 5 && argc != 6)
+		return (0);
 	if (valid_assign(&program, argv) == 0)
 		return (0);
 	initprog(&program);
+	return (0);
 }
