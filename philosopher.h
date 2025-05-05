@@ -1,5 +1,5 @@
-#ifndef PHILOSOFER_H
-#define PHILOSOFER_H
+#ifndef PHILOSOPHER_H
+#define PHILOSOPHER_H
 
 # include <sys/time.h>
 #include <unistd.h>
@@ -35,7 +35,9 @@ typedef struct			s_program
 }						t_program;
 
 void *init_phil(void *philo_init);
-void initprog(t_program *program);
+int	init_mutex(t_program *program);
+int	init_philosophers(t_program *program);
+int initprog(t_program *program);
 void	exit_launcher(t_program *program, t_philosopher *philos);
 void	death_checker(t_program *r, t_philosopher *p);
 void		smart_sleep(long long time, t_program *program);

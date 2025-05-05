@@ -1,4 +1,8 @@
-#include <philosopher.h>
+# include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
+#include "philosopher.h"
 
 long long	time_diff(long long past, long long pres)
 {

@@ -1,6 +1,9 @@
 {
-	"files.associations": {
-		"libft.h": "c",
-		"time.h": "c"
-	}
+    "files.associations": {
+        "time.h": "c",
+        "pthread.h": "c",
+        "philosopher.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c"
+    }
 }

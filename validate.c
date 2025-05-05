@@ -1,4 +1,8 @@
-#include <philosopher.h>
+# include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
+#include "philosopher.h"
 #include "libft/libft.h"
 
 long	atol(const char *str)
@@ -44,15 +48,15 @@ int	isnbr(char *matr)
 
 void	asignval(t_program *vals, long cpy, int i)
 {
-	if (i == 2)
+	if (i == 1)
 		vals->nb_philo = cpy;
-	else if (i == 3)
+	else if (i == 2)
 		vals->time_death = cpy;
-	else if (i == 4)
+	else if (i == 3)
 		vals->time_eat = cpy;
-	else if (i == 5)
+	else if (i == 4)
 		vals->time_sleep = cpy;
-	else if (i == 6)
+	else if (i == 5)
 		vals->nb_eat = cpy;
 }
 
@@ -62,16 +66,22 @@ int	valid_assign(t_program *vals, char **argv)
 	long	cpy;
 
 	cpy = 0;
-	i = 2;
+	i = 1;
 	while (argv[i] != 0)
 	{
 		if (isnbr(argv[i]) == 0)
 			return (0);
-		cpy = ft_atol(argv[i]);
+		cpy = atol(argv[i]);
 		if (cpy > 2147483647)
 			return (0);
 		asignval(vals, cpy, i);
 		i++;
 	}
+	if (!argv[5])
+	{
+		vals->nb_eat = -1;
+	}
+	vals->all_ate = 0;
+	vals->dieded = 0;
 	return (1);
 }

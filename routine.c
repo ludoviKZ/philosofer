@@ -1,10 +1,12 @@
-
-#include <philosopher.h>
+# include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
+#include "philosopher.h"
 
 void	smart_sleep(long long time, t_program *program)
 {
 	long long	i;
-
 	i = timestamp();
 	while (!(program->dieded))
 	{
@@ -17,7 +19,6 @@ void	smart_sleep(long long time, t_program *program)
 void	philo_eats(t_philosopher *philo)
 {
 	t_program	*program;
-
 	program = philo->program;
 	pthread_mutex_lock(&(program->forks[philo->left_fork_id]));
 	action_print(program, philo->id, "has taken a fork");
