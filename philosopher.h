@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosopher.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/05/22 14:59:51 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHER_H
-#define PHILOSOPHER_H
+# define PHILOSOPHER_H
 
 # include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <pthread.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <pthread.h>
+# include "philosopher.h"
 # include "libft/libft.h"
 
-typedef	struct			s_philosopher
+typedef struct s_philosopher
 {
 	int					id;
 	int					x_ate;
 	int					left_fork_id;
 	int					right_fork_id;
 	long long			t_last_meal;
-	struct s_program		*program;
+	struct s_prog		*program;
 	pthread_t			thread_id;
 }						t_philosopher;
 
-typedef struct			s_program
+typedef struct s_prog
 {
 	int					nb_philo;
 	int					time_death;
@@ -32,23 +45,22 @@ typedef struct			s_program
 	pthread_mutex_t		forks[250];
 	pthread_mutex_t		writing;
 	t_philosopher		philosophers[250];
-}						t_program;
+}						t_prog;
 
-void *init_phil(void *philo_init);
-int	init_mutex(t_program *program);
-int	init_philosophers(t_program *program);
-int initprog(t_program *program);
-void	exit_launcher(t_program *program, t_philosopher *philos);
-void	death_checker(t_program *r, t_philosopher *p);
-void		smart_sleep(long long time, t_program *program);
-void	philo_eats(t_philosopher *philo);
+void		*init_phil(void *philo_init);
+int			init_mutex(t_prog *program);
+int			init_philosophers(t_prog *program);
+int			initprog(t_prog *program);
+void		exit_launcher(t_prog *program, t_philosopher *philos);
+void		death_checker(t_prog *r, t_philosopher *p);
+void		smart_sleep(long long time, t_prog *program);
+void		philo_eats(t_philosopher *philo);
 long long	time_diff(long long past, long long pres);
 long long	timestamp(void);
-void		action_print(t_program *program, int id, char *string);
-long	atol(const char *str);
-int	isnbr(char *matr);
-void asignval(t_program *vals, long cpy, int i);
-int valid_assign(t_program *vals, char **argv);
-
+void		action_print(t_prog *program, int id, char *string);
+long		atol(const char *str);
+int			isnbr(char *matr);
+void		asignval(t_prog *vals, long cpy, int i);
+int			valid_assign(t_prog *vals, char **argv);
 
 #endif 

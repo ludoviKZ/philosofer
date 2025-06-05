@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initiate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/22 13:46:55 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/05/22 15:06:35 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <sys/time.h>
 #include <unistd.h>
@@ -9,7 +20,7 @@
 void	*init_phil(void *philo_init)
 {
 	t_philosopher	*philo;
-	t_program		*program;
+	t_prog			*program;
 
 	philo = (t_philosopher *)philo_init;
 	program = philo->program;
@@ -20,7 +31,7 @@ void	*init_phil(void *philo_init)
 		action_print(program, philo->id, "is thinking");
 		while (!(program->dieded))
 			smart_sleep(program->time_sleep, program);
-		return(0);
+		return (0);
 	}
 	while (!(program->dieded))
 	{
@@ -31,10 +42,10 @@ void	*init_phil(void *philo_init)
 		smart_sleep(program->time_sleep, program);
 		action_print(program, philo->id, "is thinking");
 	}
-	return(0);
+	return (0);
 }
 
-int	initprog(t_program *program)
+int	initprog(t_prog *program)
 {
 	int				n;
 	t_philosopher	*philo;

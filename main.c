@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/05/22 15:06:05 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -5,9 +17,9 @@
 #include "philosopher.h"
 #include "libft/libft.h"
 
-int	init_mutex(t_program *program)
+int	init_mutex(t_prog *program)
 {
-	int i;
+	int	i;
 
 	i = program->nb_philo;
 	while (--i >= 0)
@@ -22,9 +34,9 @@ int	init_mutex(t_program *program)
 	return (0);
 }
 
-int	init_philosophers(t_program *program)
+int	init_philosophers(t_prog *program)
 {
-	int i;
+	int	i;
 
 	i = program->nb_philo;
 	while (--i >= 0)
@@ -39,8 +51,7 @@ int	init_philosophers(t_program *program)
 	return (0);
 }
 
-
-void	exit_launcher(t_program *program, t_philosopher *philos)
+void	exit_launcher(t_prog *program, t_philosopher *philos)
 {
 	int	i;
 
@@ -53,7 +64,7 @@ void	exit_launcher(t_program *program, t_philosopher *philos)
 	pthread_mutex_destroy(&(program->writing));
 }
 
-void	death_checker(t_program *r, t_philosopher *p)
+void	death_checker(t_prog *r, t_philosopher *p)
 {
 	int	i;
 
@@ -83,8 +94,7 @@ void	death_checker(t_program *r, t_philosopher *p)
 
 int	main(int argc, char **argv)
 {
-	t_program	program;
-
+	t_prog	program;
 
 	if (argc != 5 && argc != 6)
 		return (0);

@@ -6,6 +6,7 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 CFLAGS = -Wall -Wextra -Werror -g
 CC = cc
 RM = rm -f
+TREAD = -lpthread
 
 %.o : %.c
 	$(CC) $(CFLAGS) -Imlx -c -o $@ $<
@@ -16,7 +17,7 @@ addlibs:
 	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(TREAD) -o $(NAME)
 	
 clean:
 	make -C $(LIBFT_PATH) clean

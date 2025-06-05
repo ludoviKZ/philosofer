@@ -1,4 +1,16 @@
-# include <sys/time.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/22 13:47:06 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/05/22 13:48:38 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <sys/time.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <pthread.h>
@@ -46,7 +58,7 @@ int	isnbr(char *matr)
 	return (1);
 }
 
-void	asignval(t_program *vals, long cpy, int i)
+void	asignval(t_prog *vals, long cpy, int i)
 {
 	if (i == 1)
 		vals->nb_philo = cpy;
@@ -60,7 +72,7 @@ void	asignval(t_program *vals, long cpy, int i)
 		vals->nb_eat = cpy;
 }
 
-int	valid_assign(t_program *vals, char **argv)
+int	valid_assign(t_prog *vals, char **argv)
 {
 	int		i;
 	long	cpy;
