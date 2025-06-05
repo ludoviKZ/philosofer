@@ -17,40 +17,6 @@
 #include "philosopher.h"
 #include "libft/libft.h"
 
-int	init_mutex(t_prog *program)
-{
-	int	i;
-
-	i = program->nb_philo;
-	while (--i >= 0)
-	{
-		if (pthread_mutex_init(&(program->forks[i]), NULL))
-			return (1);
-	}
-	if (pthread_mutex_init(&(program->writing), NULL))
-		return (1);
-	if (pthread_mutex_init(&(program->meal_check), NULL))
-		return (1);
-	return (0);
-}
-
-int	init_philosophers(t_prog *program)
-{
-	int	i;
-
-	i = program->nb_philo;
-	while (--i >= 0)
-	{
-		program->philosophers[i].id = i;
-		program->philosophers[i].x_ate = 0;
-		program->philosophers[i].left_fork_id = i;
-		program->philosophers[i].right_fork_id = (i + 1) % program->nb_philo;
-		program->philosophers[i].t_last_meal = 0;
-		program->philosophers[i].program = program;
-	}
-	return (0);
-}
-
 void	exit_launcher(t_prog *program, t_philosopher *philos)
 {
 	int	i;
@@ -100,8 +66,8 @@ int	main(int argc, char **argv)
 		return (0);
 	if (valid_assign(&program, argv) == 0)
 		return (0);
-	if (init_mutex(&program))
-		return (2);
+	if (init_mutex(&program) == 0)
+		return (0);
 	init_philosophers(&program);
 	if (initprog(&program) == 1)
 		return (0);
