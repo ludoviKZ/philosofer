@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 18:42:02 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:02:24 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "philosopher.h"
-#include "libft/libft.h"
+
+int	ft_isdigit(int str)
+{
+	if ((str >= '0') && (str <= '9'))
+		return (1);
+	return (0);
+}
 
 long long	time_diff(long long past, long long pres)
 {

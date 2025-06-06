@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 18:39:22 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:02:31 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <pthread.h>
 # include "philosopher.h"
-# include "libft/libft.h"
 
 typedef struct s_philosopher
 {
@@ -63,5 +62,5 @@ long		atol(const char *str);
 int			isnbr(char *matr);
 void		asignval(t_prog *vals, long cpy, int i);
 int			valid_assign(t_prog *vals, char **argv);
-
+int			ft_isdigit(int str);
 #endif 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initiate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:55 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/05/22 15:06:35 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:01:47 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "philosopher.h"
-#include "libft/libft.h"
 
 int	init_mutex(t_prog *program)
 {

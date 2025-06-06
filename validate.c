@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:06 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 18:17:30 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:01:41 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "philosopher.h"
-#include "libft/libft.h"
 
 long	atol(const char *str)
 {

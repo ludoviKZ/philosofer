@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 18:45:03 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:01:43 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "philosopher.h"
-#include "libft/libft.h"
 
 void	exit_launcher(t_prog *program, t_philosopher *philos)
 {
