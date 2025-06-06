@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/05/22 15:06:05 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 18:45:03 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,51 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 {
 	int	i;
 
-	i = -1;
-	while (++i < program->nb_philo)
+	i = 0;
+	while (i < program->nb_philo)
+	{
 		pthread_join(philos[i].thread_id, NULL);
-	i = -1;
-	while (++i < program->nb_philo)
+		i ++;
+	}
+	i = 0;
+	while (i < program->nb_philo)
+	{
 		pthread_mutex_destroy(&(program->forks[i]));
+		i++;
+	}
 	pthread_mutex_destroy(&(program->writing));
 }
 
-void	death_checker(t_prog *r, t_philosopher *p)
+void	death(t_prog *prog, int i)
+{
+	action_print(prog, i, "died");
+	prog->dieded = 1;
+}
+
+void	death_checker(t_prog *prog, t_philosopher *phil)
 {
 	int	i;
 
-	while (!(r->all_ate))
+	while (!(prog->all_ate))
 	{
-		i = -1;
-		while (++i < r->nb_philo && !(r->dieded))
+		i = 0;
+		while (i < prog->nb_philo && !(prog->dieded))
 		{
-			pthread_mutex_lock(&(r->meal_check));
-			if (time_diff(p[i].t_last_meal, timestamp()) > r->time_death)
-			{
-				action_print(r, i, "died");
-				r->dieded = 1;
-			}
-			pthread_mutex_unlock(&(r->meal_check));
+			pthread_mutex_lock(&(prog->meal_check));
+			if (time_diff(phil[i].t_last_meal, timestamp()) > prog->time_death)
+				death(prog, i);
+			pthread_mutex_unlock(&(prog->meal_check));
 			usleep(100);
+			i++;
 		}
-		if (r->dieded)
+		if (prog->dieded)
 			break ;
 		i = 0;
-		while (r->nb_eat != -1 && i < r->nb_philo && p[i].x_ate >= r->nb_eat)
+		while (prog->n_eat != -1 && i < prog->nb_philo
+			&& phil[i].x_ate >= prog->n_eat)
 			i++;
-		if (i == r->nb_philo)
-			r->all_ate = 1;
+		if (i == prog->nb_philo)
+			prog->all_ate = 1;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/05/22 14:59:51 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 18:39:22 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_prog
 	int					time_death;
 	int					time_eat;
 	int					time_sleep;
-	int					nb_eat;
+	int					n_eat;
 	int					dieded;
 	int					all_ate;
 	long long			first_timestamp;
@@ -57,6 +57,7 @@ void		smart_sleep(long long time, t_prog *program);
 void		philo_eats(t_philosopher *philo);
 long long	time_diff(long long past, long long pres);
 long long	timestamp(void);
+void		death(t_prog *prog, int i);
 void		action_print(t_prog *program, int id, char *string);
 long		atol(const char *str);
 int			isnbr(char *matr);

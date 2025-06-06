@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:06 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/05/22 13:48:38 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/06/06 18:17:30 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	asignval(t_prog *vals, long cpy, int i)
 	else if (i == 4)
 		vals->time_sleep = cpy;
 	else if (i == 5)
-		vals->nb_eat = cpy;
+		vals->n_eat = cpy;
 }
 
 int	valid_assign(t_prog *vals, char **argv)
@@ -91,7 +91,7 @@ int	valid_assign(t_prog *vals, char **argv)
 	}
 	if (!argv[5])
 	{
-		vals->nb_eat = -1;
+		vals->n_eat = -1;
 	}
 	vals->all_ate = 0;
 	vals->dieded = 0;
