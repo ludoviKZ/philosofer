@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:55 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 19:01:47 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/08 20:06:35 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ int	init_mutex(t_prog *program)
 	{
 		if (pthread_mutex_init(&(program->forks[i]), NULL))
 			return (0);
+		if (pthread_mutex_init(&(program->x_ate[i]), NULL))
+			return (0);
+		if (pthread_mutex_init(&(program->last_ate[i]), NULL))
+			return (0);
 		i++;
 	}
 	if (pthread_mutex_init(&(program->writing), NULL))
+		return (0);
+	if (pthread_mutex_init(&(program->death), NULL))
 		return (0);
 	if (pthread_mutex_init(&(program->meal_check), NULL))
 		return (0);
@@ -44,7 +50,7 @@ int	init_philosophers(t_prog *program)
 		program->philosophers[i].id = i;
 		program->philosophers[i].x_ate = 0;
 		program->philosophers[i].left_fork_id = i;
-		if (i == program->nb_philo + 1)
+		if (i == program->nb_philo - 1)
 			program->philosophers[i].right_fork_id = 0;
 		else
 			program->philosophers[i].right_fork_id = (i + 1);
@@ -93,9 +99,9 @@ int	initprog(t_prog *program)
 	program->first_timestamp = timestamp();
 	while (n < program->nb_philo)
 	{
+		philo[n].t_last_meal = timestamp();
 		if (pthread_create(&(philo[n].thread_id), NULL, init_phil, &(philo[n])))
 			return (1);
-		philo[n].t_last_meal = timestamp();
 		n++;
 	}
 	death_checker(program, program->philosophers);

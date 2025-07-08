@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 19:02:31 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/08 18:44:43 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ typedef struct s_prog
 	int					dieded;
 	int					all_ate;
 	long long			first_timestamp;
+	pthread_mutex_t		death;
 	pthread_mutex_t		meal_check;
 	pthread_mutex_t		forks[250];
+	pthread_mutex_t		last_ate[250];
+	pthread_mutex_t		x_ate[250];
 	pthread_mutex_t		writing;
 	t_philosopher		philosophers[250];
 }						t_prog;
 
+int		all_eat_check(t_prog *prog, t_philosopher *phil);
 void		*init_phil(void *philo_init);
 int			init_mutex(t_prog *program);
 int			init_philosophers(t_prog *program);

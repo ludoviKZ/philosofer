@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 19:01:43 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/08 18:49:30 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,22 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 void	death(t_prog *prog, int i)
 {
 	action_print(prog, i, "died");
+	pthread_mutex_lock(&(prog->death));
 	prog->dieded = 1;
+	pthread_mutex_unlock(&(prog->death));
+}
+
+int		all_eat_check(t_prog *prog, t_philosopher *phil)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&(prog->x_ate[i]));
+	while (prog->n_eat != -1 && i < prog->nb_philo
+			&& phil[i].x_ate >= prog->n_eat)
+			i++;
+	pthread_mutex_unlock(&(prog->x_ate[i]));
+	return(i);
 }
 
 void	death_checker(t_prog *prog, t_philosopher *phil)
@@ -51,9 +66,11 @@ void	death_checker(t_prog *prog, t_philosopher *phil)
 		while (i < prog->nb_philo && !(prog->dieded))
 		{
 			pthread_mutex_lock(&(prog->meal_check));
+			pthread_mutex_lock(&(prog->last_ate[i]));
 			if (time_diff(phil[i].t_last_meal, timestamp()) > prog->time_death)
 				death(prog, i);
 			pthread_mutex_unlock(&(prog->meal_check));
+			pthread_mutex_unlock(&(prog->last_ate[i]));
 			usleep(100);
 			i++;
 		}
@@ -63,7 +80,7 @@ void	death_checker(t_prog *prog, t_philosopher *phil)
 		while (prog->n_eat != -1 && i < prog->nb_philo
 			&& phil[i].x_ate >= prog->n_eat)
 			i++;
-		if (i == prog->nb_philo)
+		if (all_eat_check(prog, phil) == prog->nb_philo)
 			prog->all_ate = 1;
 	}
 }
