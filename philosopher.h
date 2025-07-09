@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/08 18:44:43 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/09 16:09:42 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			init_philosophers(t_prog *program);
 int			initprog(t_prog *program);
 void		exit_launcher(t_prog *program, t_philosopher *philos);
 void		death_checker(t_prog *r, t_philosopher *p);
-void		smart_sleep(long long time, t_prog *program);
+void		smart_sleep(long long time);
 void		philo_eats(t_philosopher *philo);
 long long	time_diff(long long past, long long pres);
 long long	timestamp(void);

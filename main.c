@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/08 18:49:30 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/09 19:51:14 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 	while (i < program->nb_philo)
 	{
 		pthread_join(philos[i].thread_id, NULL);
+		
 		i ++;
+		usleep(50);
 	}
 	i = 0;
 	while (i < program->nb_philo)
 	{
 		pthread_mutex_destroy(&(program->forks[i]));
+		pthread_mutex_destroy(&(program->last_ate[i]));
+		pthread_mutex_destroy(&(program->x_ate[i]));
 		i++;
 	}
+	pthread_mutex_destroy(&(program->death));
+	pthread_mutex_destroy(&(program->meal_check));
 	pthread_mutex_destroy(&(program->writing));
 }
 

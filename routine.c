@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:00 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/08 20:08:44 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/09 20:03:58 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@
 #include <pthread.h>
 #include "philosopher.h"
 
-void	smart_sleep(long long time, t_prog *program)
+void	smart_sleep(long long time)
 {
 	long long	i;
 
 	i = timestamp();
-	while (!(program->dieded))
-	{
-		if (time_diff(i, timestamp()) >= time)
-			break ;
+	while (time_diff(i, timestamp()) < time)
 		usleep(50);
-	}
 }
 
 void	philo_eats(t_philosopher *philo)
@@ -47,7 +43,8 @@ void	philo_eats(t_philosopher *philo)
 	pthread_mutex_lock(&(program->x_ate[philo->id]));
 	(philo->x_ate)++;
 	pthread_mutex_unlock(&(program->x_ate[philo->id]));
-	smart_sleep(program->time_eat, program);
+	smart_sleep(program->time_eat);
 	pthread_mutex_unlock(&(program->forks[philo->left_fork_id]));
 	pthread_mutex_unlock(&(program->forks[philo->right_fork_id]));
+	
 }

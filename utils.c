@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/06/06 19:02:24 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/09 16:17:01 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ long long	timestamp(void)
 void	action_print(t_prog *program, int id, char *string)
 {
 	pthread_mutex_lock(&(program->writing));
+	pthread_mutex_lock(&(program->death));
 	if (!(program->dieded))
 	{
 		printf("%lli ", timestamp() - program->first_timestamp);
@@ -46,5 +47,6 @@ void	action_print(t_prog *program, int id, char *string)
 		printf("%s\n", string);
 	}
 	pthread_mutex_unlock(&(program->writing));
+	pthread_mutex_unlock(&(program->death));
 	return ;
 }
