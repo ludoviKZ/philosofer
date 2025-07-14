@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:55 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/09 19:50:55 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:42:18 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,10 @@ void	*init_phil(void *philo_init)
 	t_philosopher	*philo;
 	t_prog			*program;
 
-	// pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 	philo = (t_philosopher *)philo_init;
 	program = philo->program;
 	if (philo->id % 2)
 		usleep(15000);
-
 	pthread_mutex_lock(&(program->death));
 	while (program->dieded < 1)
 	{

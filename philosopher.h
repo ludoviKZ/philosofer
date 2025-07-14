@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/09 16:09:42 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:43:44 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ typedef struct s_prog
 	t_philosopher		philosophers[250];
 }						t_prog;
 
-int		all_eat_check(t_prog *prog, t_philosopher *phil);
+int			all_eat_check(t_prog *prog, t_philosopher *phil);
+void		anti_deadlock_mut(t_philosopher *philo, int leftf, int rightf);
 void		*init_phil(void *philo_init);
 int			init_mutex(t_prog *program);
 int			init_philosophers(t_prog *program);

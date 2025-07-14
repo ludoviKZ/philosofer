@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/09 19:51:14 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:44:50 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 	while (i < program->nb_philo)
 	{
 		pthread_join(philos[i].thread_id, NULL);
-		
 		i ++;
 		usleep(50);
 	}
@@ -49,17 +48,17 @@ void	death(t_prog *prog, int i)
 	pthread_mutex_unlock(&(prog->death));
 }
 
-int		all_eat_check(t_prog *prog, t_philosopher *phil)
+int	all_eat_check(t_prog *prog, t_philosopher *phil)
 {
 	int	i;
 
 	i = 0;
 	pthread_mutex_lock(&(prog->x_ate[i]));
 	while (prog->n_eat != -1 && i < prog->nb_philo
-			&& phil[i].x_ate >= prog->n_eat)
-			i++;
+		&& phil[i].x_ate >= prog->n_eat)
+		i++;
 	pthread_mutex_unlock(&(prog->x_ate[i]));
-	return(i);
+	return (i);
 }
 
 void	death_checker(t_prog *prog, t_philosopher *phil)
