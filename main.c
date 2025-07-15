@@ -21,7 +21,7 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 	int	i;
 
 	i = 0;
-	while (i < program->nb_philo)
+	while (i < program->nb_philo && program->nb_philo != 1)
 	{
 		pthread_join(philos[i].thread_id, NULL);
 		i ++;

@@ -68,6 +68,12 @@ void	*init_phil(void *philo_init)
 
 	philo = (t_philosopher *)philo_init;
 	program = philo->program;
+	if (program->nb_philo == 1)
+	{
+		smart_sleep(program->time_death);
+		action_print(program, philo->id, "is thinking");
+		return(0);
+	}
 	if (philo->id % 2)
 		usleep(15000);
 	pthread_mutex_lock(&(program->death));
