@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/14 15:44:50 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/17 20:31:41 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 		i++;
 	}
 	pthread_mutex_destroy(&(program->death));
+	pthread_mutex_destroy(&(program->all_eaten));
 	pthread_mutex_destroy(&(program->meal_check));
 	pthread_mutex_destroy(&(program->writing));
 }
@@ -56,7 +57,11 @@ int	all_eat_check(t_prog *prog, t_philosopher *phil)
 	pthread_mutex_lock(&(prog->x_ate[i]));
 	while (prog->n_eat != -1 && i < prog->nb_philo
 		&& phil[i].x_ate >= prog->n_eat)
+	{
+		pthread_mutex_unlock(&(prog->x_ate[i]));
 		i++;
+		pthread_mutex_lock(&(prog->x_ate[i]));
+	}
 	pthread_mutex_unlock(&(prog->x_ate[i]));
 	return (i);
 }
@@ -81,12 +86,12 @@ void	death_checker(t_prog *prog, t_philosopher *phil)
 		}
 		if (prog->dieded)
 			break ;
-		i = 0;
-		while (prog->n_eat != -1 && i < prog->nb_philo
-			&& phil[i].x_ate >= prog->n_eat)
-			i++;
 		if (all_eat_check(prog, phil) == prog->nb_philo)
+		{
+			pthread_mutex_lock(&(prog->all_eaten));
 			prog->all_ate = 1;
+			pthread_mutex_unlock(&(prog->all_eaten));
+		}
 	}
 }
 

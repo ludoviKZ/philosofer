@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/14 15:43:44 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/17 20:27:45 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_prog
 	pthread_mutex_t		last_ate[250];
 	pthread_mutex_t		x_ate[250];
 	pthread_mutex_t		writing;
+	pthread_mutex_t		all_eaten;
 	t_philosopher		philosophers[250];
 }						t_prog;
 
