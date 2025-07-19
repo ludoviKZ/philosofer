@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	if (init_mutex(&program) == 0)
 		return (0);
 	init_philosophers(&program);
-	if (initprog(&program) == 1)
+	if (initprog(&program, program.philosophers) == 1)
 		return (0);
 	return (0);
 }

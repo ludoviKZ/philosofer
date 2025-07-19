@@ -52,20 +52,22 @@ typedef struct s_prog
 
 int			all_eat_check(t_prog *prog, t_philosopher *phil);
 void		anti_deadlock_mut(t_philosopher *philo, int leftf, int rightf);
-void		*init_phil(void *philo_init);
+void		init_phil(t_philosopher	*philo, t_prog *program);
 int			init_mutex(t_prog *program);
 int			init_philosophers(t_prog *program);
-int			initprog(t_prog *program);
+int			initprog(t_prog *program, t_philosopher	*philo);
 void		exit_launcher(t_prog *program, t_philosopher *philos);
 void		death_checker(t_prog *r, t_philosopher *p);
 void		smart_sleep(long long time);
 void		philo_eats(t_philosopher *philo);
 long long	time_diff(long long past, long long pres);
 long long	timestamp(void);
+int 		check_all_ate(t_prog *program);
 void		death(t_prog *prog, int i);
 void		action_print(t_prog *program, int id, char *string);
 long		atol(const char *str);
 int			isnbr(char *matr);
+void 		*set_vals(void *philo_init);
 void		asignval(t_prog *vals, long cpy, int i);
 int			valid_assign(t_prog *vals, char **argv);
 int			ft_isdigit(int str);

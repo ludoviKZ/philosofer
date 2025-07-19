@@ -50,3 +50,14 @@ void	action_print(t_prog *program, int id, char *string)
 	pthread_mutex_unlock(&(program->death));
 	return ;
 }
+int check_all_ate(t_prog *program)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&(program->all_eaten));
+	if (program->all_ate == 1)
+		i = 1;
+	pthread_mutex_unlock(&(program->all_eaten));
+	return (i);
+}

@@ -63,49 +63,52 @@ int	init_philosophers(t_prog *program)
 	return (0);
 }
 
-void	*init_phil(void *philo_init)
+void	init_phil(t_philosopher	*philo, t_prog *program)
 {
-	t_philosopher	*philo;
-	t_prog			*program;
-
-	philo = (t_philosopher *)philo_init;
-	program = philo->program;
 	if (philo->id % 2)
 		usleep(15000);
 	if (program->nb_philo == 1)
 	{
-		smart_sleep(program->time_death);
 		action_print(program, philo->id, "is thinking");
-		return(0);
+		smart_sleep(program->time_death);
+		return ;
 	}
 	pthread_mutex_lock(&(program->death));
 	while (program->dieded < 1)
 	{
 		pthread_mutex_unlock(&(program->death));
 		philo_eats(philo);
-		if(program->all_ate)
-			break ;
+		if(check_all_ate(program))
+			return ;
 		action_print(program, philo->id, "is sleeping");
 		smart_sleep(program->time_sleep);
 		action_print(program, philo->id, "is thinking");
 		pthread_mutex_lock(&(program->death));
 	}
 	pthread_mutex_unlock(&(program->death));
-	return (0);
+	return ;
 }
 
-int	initprog(t_prog *program)
+void	*set_vals(void *philo_init)
+{
+	t_philosopher	*philo;
+	t_prog			*program;
+
+	philo = (t_philosopher *)philo_init;
+	program = philo->program;
+	init_phil(philo, program);
+	return (0);
+}
+int	initprog(t_prog *program, t_philosopher	*philo)
 {
 	int				n;
-	t_philosopher	*philo;
 
 	n = 0;
-	philo = program->philosophers;
 	program->first_timestamp = timestamp();
 	while (n < program->nb_philo)
 	{
 		philo[n].t_last_meal = timestamp();
-		if (pthread_create(&(philo[n].thread_id), NULL, init_phil, &(philo[n])))
+		if (pthread_create(&(philo[n].thread_id), NULL, set_vals, &(philo[n])))
 			return (1);
 		n++;
 	}
