@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/22 18:01:23 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/22 19:57:43 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ int	all_eat_check(t_prog *prog, t_philosopher *phil)
 	{
 		pthread_mutex_unlock(&(prog->x_ate[i]));
 		i++;
-		pthread_mutex_lock(&(prog->x_ate[i]));
+		if(i < prog->nb_philo)
+			pthread_mutex_lock(&(prog->x_ate[i]));
 	}
-	pthread_mutex_unlock(&(prog->x_ate[i]));
+	if(i < prog->nb_philo)
+		pthread_mutex_unlock(&(prog->x_ate[i]));
 	return (i);
 }
 
