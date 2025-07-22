@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:55 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/17 20:34:12 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/22 18:36:55 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	init_mutex(t_prog *program)
 	}
 	if (pthread_mutex_init(&(program->writing), NULL))
 		return (0);
-			if (pthread_mutex_init(&(program->all_eaten), NULL))
+	if (pthread_mutex_init(&(program->all_eaten), NULL))
 		return (0);
 	if (pthread_mutex_init(&(program->death), NULL))
 		return (0);
@@ -78,7 +78,7 @@ void	init_phil(t_philosopher	*philo, t_prog *program)
 	{
 		pthread_mutex_unlock(&(program->death));
 		philo_eats(philo);
-		if(check_all_ate(program))
+		if (check_all_ate(program))
 			return ;
 		action_print(program, philo->id, "is sleeping");
 		smart_sleep(program->time_sleep);
@@ -99,6 +99,7 @@ void	*set_vals(void *philo_init)
 	init_phil(philo, program);
 	return (0);
 }
+
 int	initprog(t_prog *program, t_philosopher	*philo)
 {
 	int				n;

@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:46:57 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/17 20:31:41 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/22 18:01:23 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_launcher(t_prog *program, t_philosopher *philos)
 	int	i;
 
 	i = 0;
-	while (i < program->nb_philo && program->nb_philo != 1)
+	while (i < program->nb_philo)
 	{
 		pthread_join(philos[i].thread_id, NULL);
 		i ++;

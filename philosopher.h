@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:45 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/17 20:27:45 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/22 18:37:22 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ void		smart_sleep(long long time);
 void		philo_eats(t_philosopher *philo);
 long long	time_diff(long long past, long long pres);
 long long	timestamp(void);
-int 		check_all_ate(t_prog *program);
+int			check_all_ate(t_prog *program);
 void		death(t_prog *prog, int i);
 void		action_print(t_prog *program, int id, char *string);
 long		atol(const char *str);
 int			isnbr(char *matr);
-void 		*set_vals(void *philo_init);
+void		*set_vals(void *philo_init);
 void		asignval(t_prog *vals, long cpy, int i);
 int			valid_assign(t_prog *vals, char **argv);
 int			ft_isdigit(int str);

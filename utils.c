@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:47:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/07/09 16:17:01 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/07/22 18:37:47 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	action_print(t_prog *program, int id, char *string)
 	pthread_mutex_unlock(&(program->death));
 	return ;
 }
-int check_all_ate(t_prog *program)
+
+int	check_all_ate(t_prog *program)
 {
 	int	i;
 
